@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}
+
+{% endblock %}
+
+{% block content %}
+<body class="text-center">
+    <div class="container">
+        <form method="POST" class="form-signin" style="color:white">
+            <br>
+            {{ form.github_login.label() }}
+            {{ form.github_login(class='form-control', placeholder='GitHub Login') }}
+
+
+            <br>
+            {{ form.submit(class='btn btn-lg btn-block btn-primary') }}
+        </form>
+    </div>
+</body>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}
+
+{% endblock %}
+
+{% block content %}
+<body class="text-center">
+    <div class="container">
+        <strong>{{ user }}</strong>
+        <br>
+        {% for name in names %}
+            - {{ name }}<br>
+        {% endfor %}
+    </div>
+</body>
+{% endblock %}
