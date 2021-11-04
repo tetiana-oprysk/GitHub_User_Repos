@@ -1,3 +1,5 @@
+import os
+
 import requests
 from flask import render_template, redirect, url_for, request
 from app import app
@@ -5,7 +7,7 @@ from app.forms import Form
 
 
 def run_query(github_login):
-    headers = {"Authorization": "token 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"}
+    headers = {"Authorization": f"token {os.environ.get('GITHUB_API')}"}
 
     query = """{
       user(login: "%s"){
