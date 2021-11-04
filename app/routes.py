@@ -7,7 +7,7 @@ from app.forms import Form
 
 
 def run_query(github_login):
-    headers = {"Authorization": f"token {os.environ.get('GITHUB_API')}"}
+    headers = {"Authorization": f"token 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"}
 
     query = """{
       user(login: "%s"){
