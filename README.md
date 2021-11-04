@@ -1,4 +1,4 @@
-#App for finding all repositories on GitHub for a given GitHub_login
+# App for finding all repositories on GitHub for a given GitHub_login
 
 The application is built using the Flask framework. 
 
@@ -9,7 +9,7 @@ After installing and launching the "app" application, you will see a page with a
 
 After that, you will get it's full name and a list of all its repositories.
 
-###Example
+### Example
 ```
 Input: dhh
 
