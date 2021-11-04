@@ -6,4 +6,4 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = SECRET_KEY
 
 from app import routes
-app.run(debug=True)
+
