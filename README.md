@@ -1,4 +1,4 @@
-##App for finding all repositories on GitHub for a given GitHub_login
+#App for finding all repositories on GitHub for a given GitHub_login
 
 The application is built using the Flask framework. 
 
