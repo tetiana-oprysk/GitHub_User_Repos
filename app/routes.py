@@ -5,8 +5,8 @@ from app import app
 from app.forms import Form
 
 
-def run_query(github_login):
-    headers = {"Authorization": f"token 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"}
+def run_query(github_login, github_token):
+    headers = {"Authorization": f"token {github_token}"}
 
     query = """{
       user(login: "%s"){
@@ -33,7 +33,8 @@ def form():
     form = Form()
     if request.method == 'POST':
         github_login = request.form.get('github_login')
-        query = run_query(github_login)
+        github_token = request.form.get('github_token')
+        query = run_query(github_login, github_token)
         return redirect(url_for('list_of_repos', query=query))
     return render_template('form.html', form=form)
 
