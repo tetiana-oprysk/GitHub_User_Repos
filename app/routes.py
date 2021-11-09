@@ -21,7 +21,7 @@ def form():
 def list_of_repos():
     query = eval(request.args.get('query', None))
     names = []
-    if query['data']['user'] == None:
+    if query['data']['user'] is None:
         return render_template('something_went_wrong.html')
     for name in query['data']['user']['repositories']['nodes']:
         names.append(name['name'])
