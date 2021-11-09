@@ -1,31 +1,7 @@
-import os
-import requests
 from flask import render_template, redirect, url_for, request
 from app import app
 from app.forms import Form
-
-
-def run_query(github_login, github_token):
-    headers = {"Authorization": f"token {github_token}"}
-
-    query = """{
-      user(login: "%s"){
-      name
-      repositories(first: 50,) {
-          nodes {
-            name
-
-          }
-        }
-      }
-    }
-    """ % (github_login)
-
-    request = requests.post('https://api.github.com/graphql', json={'query': query}, headers=headers)
-    if request.status_code == 200:
-        return request.json()
-    else:
-        raise Exception("Query failed to run by returning code of {}. {}".format(request.status_code, query))
+from app.github_service import GitHubService
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -34,8 +10,10 @@ def form():
     if request.method == 'POST':
         github_login = request.form.get('github_login')
         github_token = request.form.get('github_token')
-        query = run_query(github_login, github_token)
-        return redirect(url_for('list_of_repos', query=query))
+        github_service = GitHubService(github_token, github_login)
+
+        return redirect(url_for('list_of_repos', query=github_service.get_user_repos()))
+
     return render_template('form.html', form=form)
 
 
