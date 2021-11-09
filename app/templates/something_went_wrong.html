@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}
+
+{% endblock %}
+
+{% block content %}
+<body class="text-center">
+    <div class="container">
+        <br>
+        <strong>Something went wrong. Please, check that the GitHub Login is entered correctly try one time.</strong>
+        <br>
+        <br>
+        <button onclick="goBack()" class='btn btn-lg btn-block btn-danger'>Go back</button>
+        <script>
+        function goBack() {
+          window.history.back();
+        }
+        </script>
+    </div>
+</body>
+{% endblock %}
