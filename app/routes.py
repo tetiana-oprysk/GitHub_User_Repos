@@ -8,17 +8,16 @@ from app.github_service import GitHubService
 
 @app.route('/', methods=['GET', 'POST'])
 def form():
-    # form_page = Form()
-    # if request.method == 'POST':
-    #     t = S3Connection(os.environ['TOKEN'])
-    #     github_login = request.form.get('github_login')
-    #     github_token = f'token {t}'
-    #     github_service = GitHubService(github_token, github_login)
-    #
-    #     return redirect(url_for('list_of_repos', query=github_service.get_user_repos()))
-    #
-    # return render_template('form.html', form_page=form_page)
-    return os.environ['TOKEN']
+    form_page = Form()
+    if request.method == 'POST':
+        t = os.environ['TOKEN']
+        github_login = request.form.get('github_login')
+        github_token = f'token {t}'
+        github_service = GitHubService(github_token, github_login)
+
+        return redirect(url_for('list_of_repos', query=github_service.get_user_repos()))
+
+    return render_template('form.html', form_page=form_page)
 
 
 @app.route('/list')
