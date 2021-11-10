@@ -28,4 +28,5 @@ def list_of_repos():
     for name in query['data']['user']['repositories']['nodes']:
         names.append(name['name'])
     user = query['data']['user']['name']
-    return render_template('list_of_user_repos.html', names=names, user=user)
+    # return render_template('list_of_user_repos.html', names=names, user=user)
+    return f'{query}'
