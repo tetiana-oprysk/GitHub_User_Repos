@@ -1,4 +1,6 @@
 from config import TOKEN
+import os
+from boto.s3.connection import S3Connection
 from flask import render_template, redirect, url_for, request
 from app import app
 from app.forms import Form
@@ -9,8 +11,9 @@ from app.github_service import GitHubService
 def form():
     form = Form()
     if request.method == 'POST':
+        t = S3Connection(os.environ['TOKEN'])
         github_login = request.form.get('github_login')
-        github_token = f'token {TOKEN}'
+        github_token = f'token {t}'
         github_service = GitHubService(github_token, github_login)
 
         return redirect(url_for('list_of_repos', query=github_service.get_user_repos()))
