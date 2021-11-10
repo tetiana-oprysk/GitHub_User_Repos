@@ -1,3 +1,4 @@
+import json
 import os
 from flask import render_template, redirect, url_for, request
 from app import app
@@ -29,4 +30,4 @@ def list_of_repos():
         names.append(name['name'])
     user = query['data']['user']['name']
     # return render_template('list_of_user_repos.html', names=names, user=user)
-    return f'{query}'
+    return f'{json.dumps(query)}'
