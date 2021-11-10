@@ -1,3 +1,4 @@
+from config import TOKEN
 from flask import render_template, redirect, url_for, request
 from app import app
 from app.forms import Form
@@ -9,7 +10,7 @@ def form():
     form = Form()
     if request.method == 'POST':
         github_login = request.form.get('github_login')
-        github_token = request.form.get('github_token')
+        github_token = f'token {TOKEN}'
         github_service = GitHubService(github_token, github_login)
 
         return redirect(url_for('list_of_repos', query=github_service.get_user_repos()))
