@@ -18,7 +18,7 @@ def form():
     #     return redirect(url_for('list_of_repos', query=github_service.get_user_repos()))
     #
     # return render_template('form.html', form_page=form_page)
-    return S3Connection(os.environ['TOKEN'])
+    return os.environ['TOKEN']
 
 
 @app.route('/list')
