@@ -10,7 +10,7 @@ from app.github_service import GitHubService
 def form():
     form = Form()
     if request.method == 'POST':
-        t = S3Connection(os.environ['TOKEN'])
+        t = S3Connection(os.environ['TOKEN'], None)
         github_login = request.form.get('github_login')
         github_token = f'token {t}'
         github_service = GitHubService(github_token, github_login)
