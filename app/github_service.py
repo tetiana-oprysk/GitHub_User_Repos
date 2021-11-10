@@ -7,7 +7,7 @@ class GitHubService:
         self.github_login = github_login
 
     def send_request(self, query):
-        headers = {"Authorization": f"token {self.github_token}"}
+        headers = {"Authorization": f"{self.github_token}"}
         response = requests.post('https://api.github.com/graphql', json={'query': query}, headers=headers)
 
         return response
