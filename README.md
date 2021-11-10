@@ -2,9 +2,7 @@
 
 The application is built using the Flask framework.
 
-After installing and launching the "app" application, you will see a page with a two search engines, where you need to enter the user's GitHub_Token and user's GitHub_login. 
-You can generate your own token using the following link:
-https://github.com/settings/tokens
+After installing and launching the "app" application, you will see a page with a search engines, where you need to enter the user's GitHub_login. 
 
 After that, you will get it's full name and a list of all its repositories.
 
