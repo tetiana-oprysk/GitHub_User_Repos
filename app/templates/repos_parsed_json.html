@@ -5,12 +5,14 @@
 
 {% block content %}
 <body onload="print_repos()">
-    <div class="container">
+    <div class="container" id="container">
         <h2 id="name">
         </h2>
 
         <ol id="list">
         </ol>
+
+
     </div>
 
 </body>
@@ -23,13 +25,25 @@
 
         var data = await result.json();
 
-        var repositories = data.data.user.repositories.nodes;
-        var user_name = data.data.user.name;
+        var repositories = data.data?.user?.repositories?.nodes;
+        if(repositories) {
+            var user_name = data.data.user.name;
 
-        repositories.forEach(repository=> {
-            list.innerHTML += `<li>${repository.name}</li>`
-        });
-        name.innerHTML = `Username: ${user_name}`;
+            repositories.forEach(repository=> {
+                list.innerHTML += `<li>${repository.name}</li>`
+            });
+            name.innerHTML = `Username: ${user_name}`;
+        }
+        else {
+            var errors = data.errors;
+            var block = document.getElementById("container");
+
+            block.innerHTML += `Errors:`
+            errors.forEach(error=> {
+                list.innerHTML += `<li>${error.message}</li>`
+            });
+        }
+
     }
 </script>
 <style>
