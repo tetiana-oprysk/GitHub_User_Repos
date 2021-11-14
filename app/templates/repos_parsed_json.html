@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %}
+
+{% endblock %}
+
+{% block content %}
+<body onload="print_repos()">
+    <div class="container">
+        <h2 id="name">
+        </h2>
+
+        <ol id="list">
+        </ol>
+    </div>
+
+</body>
+<script type="text/JavaScript">
+    async function print_repos() {
+        const result = await fetch("http://127.0.0.1:5000/get-list-of-repos?login={{ login }}");
+
+        var list = document.getElementById("list");
+        var name = document.getElementById("name");
+
+        var data = await result.json();
+
+        var repositories = data.data.user.repositories.nodes;
+        var user_name = data.data.user.name;
+
+        repositories.forEach(repository=> {
+            list.innerHTML += `<li>${repository.name}</li>`
+        });
+        name.innerHTML = `Username: ${user_name}`;
+    }
+</script>
+<style>
+    div {
+        margin-top: 5% !important;
+    }
+</style>
+{% endblock %}

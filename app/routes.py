@@ -1,4 +1,3 @@
-import json
 import os
 from flask import render_template, redirect, url_for, request
 from app import app
@@ -29,5 +28,26 @@ def list_of_repos():
     for name in query['data']['user']['repositories']['nodes']:
         names.append(name['name'])
     user = query['data']['user']['name']
-    # return render_template('list_of_user_repos.html', names=names, user=user)
-    return f'{json.dumps(query)}'
+
+    return render_template('list_of_user_repos.html', names=names, user=user)
+
+
+@app.route('/start-page', methods=['GET', 'POST'])
+def form_home():
+    form_page = Form()
+    if request.method == 'POST':
+        github_login = request.form.get('github_login')
+
+        return render_template('repos_parsed_json.html', login=github_login)
+
+    return render_template('form.html', form_page=form_page)
+
+
+@app.route('/get-list-of-repos', methods=['GET'])
+def get_list_of_repos():
+    t = os.environ['TOKEN']
+    github_token = f'token {t}'
+    github_login = request.args.get('login')
+    github_service = GitHubService(github_token, github_login)
+
+    return github_service.get_user_repos()
