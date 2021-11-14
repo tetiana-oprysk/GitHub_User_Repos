@@ -16,7 +16,7 @@
 </body>
 <script type="text/JavaScript">
     async function print_repos() {
-        const result = await fetch("http://127.0.0.1:5000/get-list-of-repos?login={{ login }}");
+        const result = await fetch("/get-list-of-repos?login={{ login }}");
 
         var list = document.getElementById("list");
         var name = document.getElementById("name");
