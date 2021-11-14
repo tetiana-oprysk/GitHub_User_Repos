@@ -38,9 +38,9 @@
             var errors = data.errors;
             var block = document.getElementById("container");
 
-            block.innerHTML += `Error:`
+            block.innerHTML += `Errors:`
             errors.forEach(error=> {
-                list.innerHTML += `<li>${error[0]}</li>`
+                list.innerHTML += `<li>${error.message}</li>`
             });
         }
     }
